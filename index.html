@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grand Synthesis — Domains 3 & 4 | culturalmusings.com</title>
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-lt: #e8c97a;
+    --gold-dim: #8a6f2e;
+    --ink: #1a1410;
+    --ink2: #2e2218;
+    --ink3: #3d3020;
+    --parchment: #f5ede0;
+    --parchment2: #ede0cc;
+    --parchment3: #e0d0b8;
+    --teal: #2a7c6e;
+    --teal-lt: #3da08f;
+    --teal-dim: #1a5048;
+    --maroon: #8b2635;
+    --maroon-lt: #b33045;
+    --saffron: #d4580a;
+    --saffron-lt: #e8760e;
+    --indigo: #2d3575;
+    --indigo-lt: #3d47a0;
+    --border: rgba(201,168,76,0.25);
+    --border-strong: rgba(201,168,76,0.5);
+    --shadow: rgba(26,20,16,0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--ink);
+    color: var(--parchment);
+    min-height: 100vh;
+    line-height: 1.7;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--ink2);
+    border-bottom: 1px solid var(--border-strong);
+    padding: 1.5rem 2rem 1rem;
+    text-align: center;
+  }
+  .site-header .kavi {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 0.4rem;
+  }
+  .site-header h1 {
+    font-size: 28px;
+    color: var(--gold);
+    font-weight: normal;
+    letter-spacing: 1px;
+  }
+  .site-header h1 span { color: var(--parchment2); font-size: 20px; }
+  .site-header .sub {
+    font-size: 13px;
+    color: var(--parchment3);
+    margin-top: 0.3rem;
+    font-style: italic;
+  }
+  .phase-badge {
+    display: inline-block;
+    background: var(--ink3);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3px 14px;
+    font-size: 11px;
+    color: var(--gold-dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 0.6rem;
+  }
+
+  /* ── TABS ── */
+  .tab-bar {
+    background: var(--ink2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    overflow-x: auto;
+    gap: 0;
+    padding: 0 1rem;
+    scrollbar-width: none;
+  }
+  .tab-bar::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--parchment3);
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: inherit;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .tab-btn:hover { color: var(--gold-lt); }
+  .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+  /* ── CONTENT PANELS ── */
+  .tab-panel { display: none; padding: 2rem; max-width: 960px; margin: 0 auto; }
+  .tab-panel.active { display: block; }
+
+  /* ── DOMAIN INTRO BAND ── */
+  .domain-intro {
+    background: var(--ink2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: start;
+  }
+  .domain-intro .d-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 0.3rem;
+  }
+  .domain-intro h2 {
+    font-size: 22px;
+    color: var(--gold);
+    font-weight: normal;
+    margin-bottom: 0.5rem;
+  }
+  .domain-intro .skt {
+    font-size: 18px;
+    color: var(--parchment2);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+  .domain-intro p {
+    font-size: 14px;
+    color: var(--parchment3);
+    line-height: 1.75;
+  }
+  .domain-meta { text-align: right; min-width: 160px; }
+  .domain-meta .meta-item {
+    font-size: 11px;
+    color: var(--gold-dim);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .domain-meta .meta-val {
+    font-size: 12px;
+    color: var(--parchment2);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  .url-link {
+    font-size: 11px;
+    color: var(--teal-lt);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(61,160,143,0.3);
+  }
+  .url-link:hover { color: var(--gold-lt); }
+
+  /* ── SECTION HEADING ── */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 2rem 0 1rem;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+  }
+  .section-title::before, .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── SUBDOMAIN CARDS ── */
+  .subdomain-grid { display: flex; flex-direction: column; gap: 1rem; }
+  .sd-card {
+    background: var(--ink2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .sd-card:hover { border-color: var(--border-strong); }
+  .sd-card.expanded .sd-body { display: block; }
+  .sd-card.d3-card { border-left: 3px solid var(--teal); }
+  .sd-card.d4-card { border-left: 3px solid var(--saffron); }
+
+  .sd-header {
+    display: flex;
+    align-items: center;
+    padding: 0.9rem 1.25rem;
+    cursor: pointer;
+    gap: 1rem;
+  }
+  .sd-num {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold-dim);
+    min-width: 30px;
+    font-family: 'Courier New', monospace;
+  }
+  .sd-titles { flex: 1; }
+  .sd-title {
+    font-size: 15px;
+    color: var(--parchment);
+    font-weight: normal;
+  }
+  .sd-skt {
+    font-size: 13px;
+    color: var(--gold);
+    font-style: italic;
+    margin-top: 2px;
+  }
+  .sd-expand {
+    font-size: 11px;
+    color: var(--gold-dim);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .sd-status {
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .status-ns { background: rgba(138,111,46,0.15); color: var(--gold-dim); border: 1px solid rgba(138,111,46,0.3); }
+  .status-ip { background: rgba(45,124,110,0.2); color: var(--teal-lt); border: 1px solid rgba(45,124,110,0.4); }
+  .status-done { background: rgba(45,124,110,0.3); color: #4fd1c0; border: 1px solid rgba(79,209,192,0.4); }
+
+  .sd-body {
+    display: none;
+    padding: 0 1.25rem 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+  .sd-body-inner { padding-top: 1rem; }
+
+  /* ── CONTENT ELEMENTS INSIDE SD-BODY ── */
+  .content-block { margin-bottom: 1.25rem; }
+  .content-block h4 {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    font-weight: normal;
+  }
+  .content-block p {
+    font-size: 14px;
+    color: var(--parchment3);
+    line-height: 1.8;
+  }
+  .skt-term {
+    display: inline-block;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    padding: 1px 7px;
+    font-style: italic;
+    color: var(--gold-lt);
+    font-size: 13px;
+    margin: 2px;
+  }
+  .key-concepts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.5rem; }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  .info-cell {
+    background: var(--ink3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.75rem;
+  }
+  .info-cell .ic-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 0.4rem;
+  }
+  .info-cell .ic-val {
+    font-size: 13px;
+    color: var(--parchment2);
+    line-height: 1.6;
+  }
+
+  .cross-ref-list { list-style: none; margin-top: 0.5rem; }
+  .cross-ref-list li {
+    font-size: 13px;
+    color: var(--parchment3);
+    padding: 4px 0;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+  .cross-ref-list li::before {
+    content: '◈';
+    color: var(--gold-dim);
+    font-size: 9px;
+    flex-shrink: 0;
+  }
+
+  .swara-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(212,88,10,0.12);
+    border: 1px solid rgba(212,88,10,0.3);
+    border-radius: 4px;
+    padding: 2px 10px;
+    font-size: 12px;
+    color: var(--saffron-lt);
+    margin: 2px;
+  }
+  .swara-tag.dha { background: rgba(139,38,53,0.18); border-color: rgba(139,38,53,0.4); color: #d4728a; }
+  .swara-tag.ni  { background: rgba(45,53,117,0.25); border-color: rgba(45,53,117,0.5); color: #8892e0; }
+
+  .ref-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.5rem; }
+  .ref-link {
+    font-size: 11px;
+    color: var(--teal-lt);
+    text-decoration: none;
+    border: 1px solid rgba(61,160,143,0.25);
+    border-radius: 4px;
+    padding: 3px 10px;
+  }
+  .ref-link:hover { border-color: rgba(61,160,143,0.6); color: var(--gold-lt); }
+
+  /* ── SAPTA SWARA TABLE ── */
+  .swara-table-wrap { overflow-x: auto; margin-top: 1rem; }
+  .swara-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .swara-table th {
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    border-bottom: 1px solid var(--border-strong);
+    font-weight: normal;
+  }
+  .swara-table td {
+    padding: 0.7rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--parchment3);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .swara-table tr:hover td { background: rgba(201,168,76,0.04); }
+  .swara-table .sw-name { color: var(--gold); font-size: 15px; }
+  .swara-table .sw-skt { color: var(--parchment2); font-style: italic; }
+  .swara-table .sw-dev { font-size: 16px; }
+  .swara-table tr.row-dha td { background: rgba(139,38,53,0.08); }
+  .swara-table tr.row-ni td { background: rgba(45,53,117,0.12); }
+  .swara-table tr.row-dha .sw-name { color: #d4728a; }
+  .swara-table tr.row-ni .sw-name { color: #8892e0; }
+  .emphasis-badge {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .badge-dha { background: rgba(139,38,53,0.3); color: #e890a5; border: 1px solid rgba(212,114,138,0.4); }
+  .badge-ni  { background: rgba(45,53,117,0.4); color: #aab2f0; border: 1px solid rgba(136,146,224,0.4); }
+
+  /* ── BRIDGE / SYNTHESIS MAP ── */
+  .bridge-flow {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+  }
+  .bridge-node {
+    background: var(--ink2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    min-width: 150px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .bridge-node .bn-title {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 0.4rem;
+  }
+  .bridge-node .bn-skt {
+    font-size: 14px;
+    color: var(--gold);
+    font-style: italic;
+  }
+  .bridge-node .bn-en {
+    font-size: 12px;
+    color: var(--parchment3);
+    margin-top: 4px;
+  }
+  .bridge-node.teal-node { border-color: rgba(45,124,110,0.5); }
+  .bridge-node.saffron-node { border-color: rgba(212,88,10,0.5); }
+  .bridge-arrow {
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    color: var(--gold-dim);
+    font-size: 18px;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  /* ── SYNTHESIS POINTS ── */
+  .synthesis-point {
+    background: var(--ink2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .synthesis-point .sp-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 0.4rem;
+  }
+  .synthesis-point h3 {
+    font-size: 16px;
+    color: var(--parchment);
+    font-weight: normal;
+    margin-bottom: 0.5rem;
+  }
+  .synthesis-point p {
+    font-size: 13px;
+    color: var(--parchment3);
+    line-height: 1.75;
+  }
+
+  /* ── PROGRESS TRACKER ── */
+  .progress-section { margin-bottom: 2rem; }
+  .progress-section h3 {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    font-weight: normal;
+  }
+  .tracker-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.7rem 0.5rem;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    font-size: 13px;
+  }
+  .tracker-item label { flex: 1; cursor: pointer; color: var(--parchment3); }
+  .tracker-item input[type="checkbox"] { accent-color: var(--gold); width: 16px; height: 16px; cursor: pointer; }
+  .tracker-item.checked label { text-decoration: line-through; color: var(--gold-dim); }
+  .tracker-item .domain-tag {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .tag-d3 { background: rgba(45,124,110,0.2); color: var(--teal-lt); border: 1px solid rgba(45,124,110,0.3); }
+  .tag-d4 { background: rgba(212,88,10,0.15); color: var(--saffron-lt); border: 1px solid rgba(212,88,10,0.3); }
+  .notes-input {
+    font-size: 11px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    color: var(--parchment3);
+    width: 160px;
+    font-family: inherit;
+  }
+  .notes-input::placeholder { color: var(--gold-dim); }
+
+  .progress-bar-wrap {
+    background: var(--ink3);
+    border-radius: 4px;
+    height: 6px;
+    margin: 0.75rem 0;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    border-radius: 4px;
+    background: var(--gold);
+    transition: width 0.4s ease;
+  }
+  .progress-stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .pstat {
+    background: var(--ink2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.75rem;
+    text-align: center;
+  }
+  .pstat .pval { font-size: 24px; color: var(--gold); }
+  .pstat .plbl { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dim); margin-top: 2px; }
+
+  /* ── VEDIC SUTRAS TABLE ── */
+  .sutra-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 0.5rem; }
+  .sutra-table th {
+    background: var(--ink3);
+    padding: 6px 10px;
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    font-weight: normal;
+    border-bottom: 1px solid var(--border);
+  }
+  .sutra-table td {
+    padding: 7px 10px;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    color: var(--parchment3);
+    vertical-align: top;
+  }
+  .sutra-table tr:hover td { background: rgba(201,168,76,0.04); }
+  .sutra-table .skt-col { color: var(--gold-lt); font-style: italic; }
+
+  /* ── RAGA RASA MATRIX ── */
+  .rasa-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 8px;
+    margin-top: 0.75rem;
+  }
+  .rasa-cell {
+    background: var(--ink3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.6rem 0.75rem;
+    cursor: default;
+  }
+  .rasa-cell .rasa-name { font-size: 12px; color: var(--gold); margin-bottom: 2px; }
+  .rasa-cell .rasa-skt { font-size: 11px; color: var(--parchment3); font-style: italic; }
+  .rasa-cell .rasa-raga { font-size: 11px; color: var(--teal-lt); margin-top: 4px; }
+
+  /* ── SHRUTI TABLE ── */
+  .shruti-wrap { overflow-x: auto; }
+  .shruti-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .shruti-table th {
+    padding: 6px 8px;
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    font-weight: normal;
+    border-bottom: 1px solid var(--border-strong);
+  }
+  .shruti-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    color: var(--parchment3);
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+  }
+  .shruti-table tr:hover td { background: rgba(201,168,76,0.04); }
+  .shruti-table .sw-col { color: var(--gold); font-family: 'Georgia', serif; font-style: italic; font-size: 13px; }
+  .shruti-table .dha-row td { background: rgba(139,38,53,0.08); }
+  .shruti-table .dha-row .sw-col { color: #d4728a; }
+  .shruti-table .ni-row td { background: rgba(45,53,117,0.12); }
+  .shruti-table .ni-row .sw-col { color: #8892e0; }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: var(--ink2);
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 3rem;
+    font-size: 12px;
+    color: var(--gold-dim);
+    letter-spacing: 1px;
+  }
+  .site-footer a { color: var(--teal-lt); text-decoration: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .tab-panel { padding: 1rem; }
+    .domain-intro { grid-template-columns: 1fr; }
+    .domain-meta { text-align: left; }
+    .bridge-flow { flex-direction: column; }
+    .bridge-arrow { transform: rotate(90deg); align-self: center; }
+    .progress-stats { grid-template-columns: repeat(2,1fr); }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="kavi">Grand Synthesis · Phase 1 — Weeks 5–16</div>
+  <h1>Domains 3 &amp; 4 <span>| Vedic Foundation &amp; Sound Science</span></h1>
+  <div class="sub">Natya Shastra · Vedic Knowledge · Sound Science · Consciousness · Karmic Code</div>
+  <div class="phase-badge">Phase 1 → Phase 2 Bridge</div>
+</header>
+
+<nav class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('d3')">D3: Vedic Foundation</button>
+  <button class="tab-btn" onclick="switchTab('d4')">D4: Sound &amp; Vibration</button>
+  <button class="tab-btn" onclick="switchTab('sapta')">Sapta Swara</button>
+  <button class="tab-btn" onclick="switchTab('bridge')">Cross-Domain Bridge</button>
+  <button class="tab-btn" onclick="switchTab('tracker')">Progress Tracker</button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════ DOMAIN 3 -->
+<div id="tab-d3" class="tab-panel active">
+
+  <div class="domain-intro">
+    <div>
+      <div class="d-label">Domain 3 of 9 · Phase 1 · Weeks 5–12</div>
+      <h2>Vedic Primordial Foundation</h2>
+      <div class="skt">वैदिक प्रतिष्ठान — Vaidika Pratiṣṭhāna</div>
+      <p>The textual spine of the entire synthesis. The four Vedas represent the primordial division of all knowledge — Ṛg-Veda (cosmic hymns), Yajur-Veda (ritual science), Sāma-Veda (melodic foundation), Atharva-Veda (healing &amp; tantra). The Āraṇyakas and Upaniṣads deepen this into philosophical territory. The three great Ācāryas — Śaṅkarācārya (Advaita), Madhvācārya (Dvaita), Rāmānujācārya (Viśiṣṭādvaita) — each left textual lineages that must be mapped and cross-linked. This domain feeds directly into Domain 4 through the Sāma-Veda → Rāga genesis chain.</p>
+    </div>
+    <div class="domain-meta">
+      <div class="meta-item">Timeline</div>
+      <span class="meta-val">Weeks 5–12</span>
+      <div class="meta-item">Subdomains</div>
+      <span class="meta-val">6 of 9</span>
+      <div class="meta-item">Primary URL</div>
+      <a class="url-link" href="https://spiritualphilosophical.culturalmusings.com" target="_blank">spiritualphilosophical<br>.culturalmusings.com</a>
+    </div>
+  </div>
+
+  <div class="section-title">Six Subdomains</div>
+  <div class="subdomain-grid">
+
+    <!-- SD 3.1: Rigveda -->
+    <div class="sd-card d3-card" id="sd-3-1">
+      <div class="sd-header" onclick="toggleSD('sd-3-1')">
+        <span class="sd-num">3.1</span>
+        <div class="sd-titles">
+          <div class="sd-title">Ṛgveda — Cosmic Hymns &amp; Cosmological Architecture</div>
+          <div class="sd-skt">ऋग्वेद — Ṛg-Veda · "Praise Knowledge"</div>
+        </div>
+        <span class="sd-status status-ns">Not Started</span>
+        <span class="sd-expand">▾</span>
+      </div>
+      <div class="sd-body">
+        <div class="sd-body-inner">
+          <div class="content-block">
+            <h4>Core Structure</h4>
+            <p>The oldest of the four Vedas and humanity's earliest recorded literary corpus. Comprises <strong style="color:var(--gold)">10 Maṇḍalas</strong> (books), <strong style="color:var(--gold)">1,028 Sūktas</strong> (hymns), and <strong style="color:var(--gold)">10,552 Ṛcas</strong> (verses). The Maṇḍalas are attributed to different Ṛṣi families (Aṅgiras, Kaṇva, Vasiṣṭha, Viśvāmitra, Atri, Bhṛgu, Kaśyapa, Gṛtsamada, Agastya).</p>
+          </div>
+          <div class="info-grid">
+            <div class="info-cell">
+              <div class="ic-label">Cosmological Hymns</div>
+              <div class="ic-val">Nāsadīya Sūkta (X.129) — Creation from void. Puruṣa Sūkta (X.90) — Cosmic Person. Hiraṇyagarbha (X.121) — Golden Womb.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Metre (Chandas)</div>
+              <div class="ic-val">Gāyatrī (24 syllables), Triṣṭubh (44), Jagatī (48), Anuṣṭubh (32) — these metres carry inherent sonic frequencies later mapped to Sāma singing.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Sapta Swara Link</div>
+              <div class="ic-val">Ṛgvedic recitation uses three tones: <span class="swara-tag">Udātta ↑</span> <span class="swara-tag">Anudātta ↓</span> <span class="swara-tag">Svarita —</span>. These are proto-swara markers evolving toward Dha and Ni.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Synthesis Connections</div>
+              <div class="ic-val">→ Domain 2: Bharata Muni quotes Ṛgvedic cosmology in Natya Shastra. → Domain 5: Nāsadīya Sūkta as proto-Śūnyavāda. → Domain 8: Vedic period timeline anchor.</div>
+            </div>
+          </div>
+          <div class="content-block" style="margin-top:1rem">
+            <h4>Key Sanskrit Terms</h4>
+            <div class="key-concepts">
+              <span class="skt-term">Maṇḍala (मण्डल)</span>
+              <span class="skt-term">Sūkta (सूक्त)</span>
+              <span class="skt-term">Ṛca (ऋच)</span>
+              <span class="skt-term">Ṛṣi (ऋषि)</span>
+              <span class="skt-term">Chandas (छन्दस्)</span>
+              <span class="skt-term">Udātta (उदात्त)</span>
+              <span class="skt-term">Anudātta (अनुदात्त)</span>
+              <span class="skt-term">Svarita (स्वरित)</span>
+              <span class="skt-term">Nāsadīya (नासदीय)</span>
+              <span class="skt-term">Puruṣa Sūkta (पुरुषसूक्त)</span>
+            </div>
+          </div>
+          <div class="content-block">
+            <h4>Reference URLs</h4>
+            <div class="ref-links">
+              <a class="ref-link" href="https://vedicheritage.gov.in/introduction/" target="_blank">vedicheritage.gov.in</a>
+              <a class="ref-link" href="https://hindupedia.com/en/Veda" target="_blank">hindupedia.com</a>
+              <a class="ref-link" href="https://vedapurana.org/" target="_blank">vedapurana.org</a>
+              <a class="ref-link" href="https://sanskritdocuments.org/" target="_blank">sanskritdocuments.org</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SD 3.2: Yajurveda -->
+    <div class="sd-card d3-card" id="sd-3-2">
+      <div class="sd-header" onclick="toggleSD('sd-3-2')">
+        <span class="sd-num">3.2</span>
+        <div class="sd-titles">
+          <div class="sd-title">Yajurveda — Ritual Science &amp; Yajña Protocols</div>
+          <div class="sd-skt">यजुर्वेद — Yajur-Veda · "Sacrifice Knowledge"</div>
+        </div>
+        <span class="sd-status status-ns">Not Started</span>
+        <span class="sd-expand">▾</span>
+      </div>
+      <div class="sd-body">
+        <div class="sd-body-inner">
+          <div class="content-block">
+            <h4>Two Major Branches</h4>
+            <p>The Yajurveda is uniquely split into <strong style="color:var(--gold)">Kṛṣṇa (Black) Yajurveda</strong> — mixing prose and verse, with commentary interspersed — and <strong style="color:var(--gold)">Śukla (White) Yajurveda</strong> — pure verse, separated from Brāhmaṇa commentary. The primary texts are Taittirīya Saṃhitā (Kṛṣṇa) and Vājasaneyī Saṃhitā / Śatapatha Brāhmaṇa (Śukla).</p>
+          </div>
+          <div class="info-grid">
+            <div class="info-cell">
+              <div class="ic-label">Ritual Importance</div>
+              <div class="ic-val">The Adhvaryu priest uses Yajurveda in Soma yajña and Agnihotra. The Yajurveda is the practical manual — what to do, how to build the fire altar (Agni-cayana), precise mantras for each action.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Taittirīya Connection</div>
+              <div class="ic-val">Taittirīya Saṃhitā contains the Taittirīya Upaniṣad — home of the Pañca Kośa (five-sheath) doctrine critical to Domain 6 (Karma-DNA).</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Sound &amp; Vibration Link</div>
+              <div class="ic-val">Yajña mantras are precisely toned. The Śatarudrīya (Śrī Rudram) from Kṛṣṇa Yajurveda is a sonic masterpiece — direct link to Domain 4 bioacoustics.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Sapta Swara Context</div>
+              <div class="ic-val">Yajurvedic chanting is monotone with accent marks — the predecessor to differentiated swara. The move from 3 pitch levels to 7 swaras is traced through Yajur → Sāma tradition.</div>
+            </div>
+          </div>
+          <div class="content-block" style="margin-top:1rem">
+            <h4>Key Sanskrit Terms</h4>
+            <div class="key-concepts">
+              <span class="skt-term">Yajña (यज्ञ)</span>
+              <span class="skt-term">Adhvaryu (अध्वर्यु)</span>
+              <span class="skt-term">Agnihotra (अग्निहोत्र)</span>
+              <span class="skt-term">Soma (सोम)</span>
+              <span class="skt-term">Śatarudrīya (शतरुद्रीय)</span>
+              <span class="skt-term">Śrī Rudram (श्रीरुद्रम्)</span>
+              <span class="skt-term">Taittirīya (तैत्तिरीय)</span>
+              <span class="skt-term">Śatapatha (शतपथ)</span>
+              <span class="skt-term">Vājasaneyī (वाजसनेयी)</span>
+            </div>
+          </div>
+          <div class="content-block">
+            <h4>Reference URLs</h4>
+            <div class="ref-links">
+              <a class="ref-link" href="https://www.medhajournal.com/rudram-chamakam-an-original-explanation/" target="_blank">medhajournal.com — Rudram</a>
+              <a class="ref-link" href="https://shlokam.org/shloka/rudram-namakam.htm" target="_blank">shlokam.org — Namakam</a>
+              <a class="ref-link" href="https://veda.harekrsna.cz/encyclopedia/scriptures.htm" target="_blank">veda.harekrsna.cz</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SD 3.3: Samaveda -->
+    <div class="sd-card d3-card" id="sd-3-3">
+      <div class="sd-header" onclick="toggleSD('sd-3-3')">
+        <span class="sd-num">3.3</span>
+        <div class="sd-titles">
+          <div class="sd-title">Sāmaveda — The Melodic Veda &amp; Root of Rāga Genesis</div>
+          <div class="sd-skt">सामवेद — Sāma-Veda · "Song / Melody Knowledge"</div>
+        </div>
+        <span class="sd-status status-ns">Not Started</span>
+        <span class="sd-expand">▾</span>
+      </div>
+      <div class="sd-body">
+        <div class="sd-body-inner">
+          <div class="content-block">
+            <h4>The Bridge to Domain 4 — Critical Link</h4>
+            <p>The Sāmaveda is the direct ancestor of Indian classical music. Of its <strong style="color:var(--gold)">1,875 verses</strong>, approximately 1,549 are drawn from the Ṛgveda — but they are transformed from spoken recitation to <em>sung melody</em> (Sāman). The Sāmaveda priest (Udgātṛ) employs <strong style="color:var(--gold)">seven tones</strong> in performance, directly establishing the foundation of the Sapta Swara system.</p>
+          </div>
+          <div class="info-grid">
+            <div class="info-cell">
+              <div class="ic-label">Seven Sāma Tones</div>
+              <div class="ic-val">Krūṣṭa, Prathama, Dvitīya, Tṛtīya, Caturtha, Mandra, Atisvarya — these seven Sāma svaras are the proto-Sapta Swaras. They map imperfectly but structurally to Sa–Re–Ga–Ma–Pa–Dha–Ni.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Sāma → Rāga Pathway</div>
+              <div class="ic-val">Sāmaveda tones → Gāndhārva Veda (musical science appendix) → Jāti system → Grāma → Mūrchanā → proto-Rāga → Classical Rāga system. Full pathway diagrammed in Cross-Domain Bridge tab.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Key Texts</div>
+              <div class="ic-val">Kauthuma Saṃhitā (most widely used), Rāṇāyanīya Saṃhitā, Jaiminīya Saṃhitā. The Chāndogya Upaniṣad (arising from Sāmaveda tradition) is one of the principal Upaniṣads.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Dha &amp; Ni in Sāma</div>
+              <div class="ic-val"><span class="swara-tag dha">Dha</span> corresponds to Caturtha tone in descending Sāma scale — the point of maximum emotional resonance in Vedic chanting. <span class="swara-tag ni">Ni</span> as Mandra/Atisvarya marks the boundary between registers.</div>
+            </div>
+          </div>
+          <div class="content-block" style="margin-top:1rem">
+            <h4>Key Sanskrit Terms</h4>
+            <div class="key-concepts">
+              <span class="skt-term">Sāman (सामन्)</span>
+              <span class="skt-term">Udgātṛ (उद्गातृ)</span>
+              <span class="skt-term">Gāndhārva Veda (गान्धर्ववेद)</span>
+              <span class="skt-term">Grāma (ग्राम)</span>
+              <span class="skt-term">Mūrchanā (मूर्च्छना)</span>
+              <span class="skt-term">Jāti (जाति)</span>
+              <span class="skt-term">Kauthuma (कौथुम)</span>
+              <span class="skt-term">Chāndogya (छान्दोग्य)</span>
+              <span class="skt-term">Krūṣṭa (क्रुष्ट)</span>
+              <span class="skt-term">Atisvarya (अतिस्वर्य)</span>
+            </div>
+          </div>
+          <div class="content-block">
+            <h4>Reference URLs</h4>
+            <div class="ref-links">
+              <a class="ref-link" href="https://vedicheritage.gov.in/introduction/" target="_blank">vedicheritage.gov.in</a>
+              <a class="ref-link" href="https://sanskritdocuments.org/" target="_blank">sanskritdocuments.org</a>
+              <a class="ref-link" href="https://www.vedadhara.com/" target="_blank">vedadhara.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SD 3.4: Atharvaveda -->
+    <div class="sd-card d3-card" id="sd-3-4">
+      <div class="sd-header" onclick="toggleSD('sd-3-4')">
+        <span class="sd-num">3.4</span>
+        <div class="sd-titles">
+          <div class="sd-title">Atharvaveda — Healing Science, Tantra &amp; Bio-Acoustic Roots</div>
+          <div class="sd-skt">अथर्ववेद — Atharva-Veda · "Atharvan Priest Knowledge"</div>
+        </div>
+        <span class="sd-status status-ns">Not Started</span>
+        <span class="sd-expand">▾</span>
+      </div>
+      <div class="sd-body">
+        <div class="sd-body-inner">
+          <div class="content-block">
+            <h4>Structure &amp; Scope</h4>
+            <p>Comprising <strong style="color:var(--gold)">20 Kāṇḍas</strong>, <strong style="color:var(--gold)">730 Sūktas</strong>, and approximately <strong style="color:var(--gold)">5,987 verses</strong>, the Atharvaveda is distinct from the other three in addressing everyday human concerns — healing, protection, prosperity, relationship, and tantra. It is the Vedic textual root of Āyurveda, Nāḍī chikitsā, and bio-resonance medicine, making it Domain 7's primary Vedic source.</p>
+          </div>
+          <div class="info-grid">
+            <div class="info-cell">
+              <div class="ic-label">Medical Hymns</div>
+              <div class="ic-val">Bhūmi Sūkta (XII.1) — hymn to Earth as healer. Prāṇa Sūkta — breath as life-force. Herb hymns (Kāṇḍa VI) — earliest recorded pharmacopoeia. Direct link to Domain 7 Nāḍī therapy.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Tantric Foundation</div>
+              <div class="ic-val">Atharva-Veda contains the earliest Bīja mantras in Vedic literature. Śrī Sūkta, Devī hymns, and protective kavacas here form the root text lineage of Domain 4 Mantra Śāstra.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Bio-Acoustic Connection</div>
+              <div class="ic-val">The healing mantras in Atharvaveda are not mere words — they specify tonal patterns (svara sequences) with therapeutic intent. This is the earliest documented sound-as-medicine system.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Kāṇḍa VI — Sound Healing</div>
+              <div class="ic-val">Hymns 6.24–6.29 specifically use sound vibration to address ailments of the body. These are cross-referenced against the 107 Marma points in Domain 7.</div>
+            </div>
+          </div>
+          <div class="content-block" style="margin-top:1rem">
+            <h4>Key Sanskrit Terms</h4>
+            <div class="key-concepts">
+              <span class="skt-term">Kāṇḍa (काण्ड)</span>
+              <span class="skt-term">Bīja (बीज)</span>
+              <span class="skt-term">Kavaca (कवच)</span>
+              <span class="skt-term">Āyurveda (आयुर्वेद)</span>
+              <span class="skt-term">Bhūmi Sūkta (भूमिसूक्त)</span>
+              <span class="skt-term">Prāṇa (प्राण)</span>
+              <span class="skt-term">Nāḍī (नाडी)</span>
+              <span class="skt-term">Paippalāda (पिप्पलाद)</span>
+              <span class="skt-term">Śaunaka (शौनक)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SD 3.5: Upanishads -->
+    <div class="sd-card d3-card" id="sd-3-5">
+      <div class="sd-header" onclick="toggleSD('sd-3-5')">
+        <span class="sd-num">3.5</span>
+        <div class="sd-titles">
+          <div class="sd-title">Upaniṣads &amp; Āraṇyakas — The Philosophical Forest Layer</div>
+          <div class="sd-skt">उपनिषद् — Upa-ni-ṣad · "Sitting Near [the Teacher]"</div>
+        </div>
+        <span class="sd-status status-ns">Not Started</span>
+        <span class="sd-expand">▾</span>
+      </div>
+      <div class="sd-body">
+        <div class="sd-body-inner">
+          <div class="content-block">
+            <h4>The 10 Principal Upaniṣads (Mukhya Upaniṣads)</h4>
+            <p>Śaṅkarācārya wrote commentaries on the <strong style="color:var(--gold)">10 principal Upaniṣads</strong>: Īśa, Kena, Kaṭha, Praśna, Muṇḍaka, Māṇḍūkya, Taittirīya, Aitareya, Chāndogya, and Bṛhadāraṇyaka. These are the philosophical summit of the Vedic corpus and the primary texts for Domain 5 (Consciousness Studies).</p>
+          </div>
+          <div class="info-grid">
+            <div class="info-cell">
+              <div class="ic-label">Māṇḍūkya Upaniṣad</div>
+              <div class="ic-val">12 verses on Oṃkāra (AUM) and the four states of consciousness — Jāgrat (waking), Svapna (dream), Suṣupti (deep sleep), Turīya (fourth state). Root text for Domain 5.5.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Chāndogya Upaniṣad</div>
+              <div class="ic-val">Arises from Sāmaveda. Contains the famous Tat Tvam Asi ("That Thou Art") mahāvākya. Contains earliest philosophical treatment of music as consciousness (Sāman as Brahman).</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Taittirīya Upaniṣad</div>
+              <div class="ic-val">Contains the Pañca Kośa (five sheaths) doctrine — Annamaya, Prāṇamaya, Manomaya, Vijñānamaya, Ānandamaya — directly cross-linked to Domain 6 Karma-DNA framework.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Āraṇyakas</div>
+              <div class="ic-val">The "Forest Texts" — intermediate between Brāhmaṇas and Upaniṣads. Aitareya Āraṇyaka, Taittirīya Āraṇyaka, Śāṅkhāyana Āraṇyaka. Key transitional texts for ritual-to-philosophy evolution.</div>
+            </div>
+          </div>
+          <div class="content-block" style="margin-top:1rem">
+            <h4>Sound &amp; Consciousness in Upaniṣads</h4>
+            <p>The Māṇḍūkya Upaniṣad opens: <span class="skt-term">Oṃ ityetadakṣaram idaṃ sarvam</span> — "Oṃ, this syllable, is all this." The identification of primordial sound with total reality is the philosophic root of Nāda Brahma in Domain 4. The sound <span class="swara-tag">Sa ↔ Oṃkāra</span> (the base swara as ground tone) is explicitly treated in Chāndogya as the convergence point.</p>
+          </div>
+          <div class="content-block">
+            <h4>Key Sanskrit Terms</h4>
+            <div class="key-concepts">
+              <span class="skt-term">Oṃkāra (ॐकार)</span>
+              <span class="skt-term">Mahāvākya (महावाक्य)</span>
+              <span class="skt-term">Tat Tvam Asi (तत्त्वमसि)</span>
+              <span class="skt-term">Pañca Kośa (पञ्चकोश)</span>
+              <span class="skt-term">Turīya (तुरीय)</span>
+              <span class="skt-term">Brahman (ब्रह्मन्)</span>
+              <span class="skt-term">Ātman (आत्मन्)</span>
+              <span class="skt-term">Jīva (जीव)</span>
+              <span class="skt-term">Māyā (माया)</span>
+            </div>
+          </div>
+          <div class="content-block">
+            <h4>Reference URLs</h4>
+            <div class="ref-links">
+              <a class="ref-link" href="https://openlibrary.org/subjects/advaita" target="_blank">openlibrary.org — Advaita</a>
+              <a class="ref-link" href="https://archive.org/details/CompleteWorksOfSriSankaracharyaIn20Volumes1910Edition/" target="_blank">archive.org — Śaṅkarācārya</a>
+              <a class="ref-link" href="https://www.wisdomlib.org/" target="_blank">wisdomlib.org</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SD 3.6: Shruti-Smriti -->
+    <div class="sd-card d3-card" id="sd-3-6">
+      <div class="sd-header" onclick="toggleSD('sd-3-6')">
+        <span class="sd-num">3.6</span>
+        <div class="sd-titles">
+          <div class="sd-title">Śruti-Smṛti Continuum — Purāṇic Extensions &amp; Ācārya Commentaries</div>
+          <div class="sd-skt">श्रुतिस्मृति — Revealed &amp; Remembered Knowledge</div>
+        </div>
+        <span class="sd-status status-ns">Not Started</span>
+        <span class="sd-expand">▾</span>
+      </div>
+      <div class="sd-body">
+        <div class="sd-body-inner">
+          <div class="content-block">
+            <h4>The Three Ācāryas</h4>
+            <p>The three principal Vedānta Ācāryas each wrote prasthānatraya commentaries (on the Upaniṣads, Bhagavad Gītā, and Brahmasūtra) establishing distinct but interconnected philosophical lineages:</p>
+          </div>
+          <div class="info-grid">
+            <div class="info-cell">
+              <div class="ic-label">Śaṅkarācārya — Advaita</div>
+              <div class="ic-val">Non-dual Vedānta. Brahman alone is real; world is Māyā. Establishes four maṭhas. Key texts: Vivekacūḍāmaṇi, Ātmabodha, Brahmasūtra-bhāṣya. Root of Domain 5.2.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Madhvācārya — Dvaita</div>
+              <div class="ic-val">Dualist Vedānta. Jīva and Brahman eternally distinct. Bhakti as primary path. Key texts: Brahmasūtra-bhāṣya, Viṣṇutattva-nirṇaya. Root of Domain 5.3.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Rāmānujācārya — Viśiṣṭādvaita</div>
+              <div class="ic-val">Qualified non-dualism. Jīva and jagat are real but constitute the "body" of Brahman. Key texts: Śrī-Bhāṣya, Gītā-bhāṣya. Root of Domain 5.4.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Purāṇic Extensions</div>
+              <div class="ic-val">18 Mahāpurāṇas and 18 Upapurāṇas extend Vedic knowledge into narrative. Bhāgavata Purāṇa, Śiva Purāṇa, Devī Bhāgavata form the Smṛti layer. Domain 8 Cultural timeline draws heavily from Purāṇic chronology.</div>
+            </div>
+          </div>
+          <div class="content-block" style="margin-top:1rem">
+            <h4>Key Sanskrit Terms</h4>
+            <div class="key-concepts">
+              <span class="skt-term">Śruti (श्रुति)</span>
+              <span class="skt-term">Smṛti (स्मृति)</span>
+              <span class="skt-term">Prasthānatraya (प्रस्थानत्रय)</span>
+              <span class="skt-term">Advaita (अद्वैत)</span>
+              <span class="skt-term">Dvaita (द्वैत)</span>
+              <span class="skt-term">Viśiṣṭādvaita (विशिष्टाद्वैत)</span>
+              <span class="skt-term">Maṭha (मठ)</span>
+              <span class="skt-term">Purāṇa (पुराण)</span>
+              <span class="skt-term">Bhāṣya (भाष्य)</span>
+            </div>
+          </div>
+          <div class="content-block">
+            <h4>Reference URLs</h4>
+            <div class="ref-links">
+              <a class="ref-link" href="https://archive.org/details/CompleteWorksOfSriSankaracharyaIn20Volumes1910Edition/" target="_blank">archive.org — Śaṅkara Complete Works</a>
+              <a class="ref-link" href="https://www.kamakoti.org/kamakoti/details/naradapurana12.html" target="_blank">kamakoti.org — Purāṇa</a>
+              <a class="ref-link" href="https://vedapurana.org/" target="_blank">vedapurana.org</a>
+              <a class="ref-link" href="https://manblunder.com/" target="_blank">manblunder.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /subdomain-grid -->
+</div><!-- /tab-d3 -->
+
+
+<!-- ═══════════════════════════════════════════════════════════ DOMAIN 4 -->
+<div id="tab-d4" class="tab-panel">
+
+  <div class="domain-intro">
+    <div>
+      <div class="d-label">Domain 4 of 9 · Phase 2 · Weeks 8–16</div>
+      <h2>Sound &amp; Vibration Science</h2>
+      <div class="skt">नादविज्ञान — Nāda-Vijñāna · "Knowledge of Sacred Sound"</div>
+      <p>The hardest bridge in the entire synthesis — connecting Nāda Brahma (sound as cosmic creation) to modern psychoacoustics and bio-acoustic therapy. The 72-Melakarta rāga system with its 22 śruti microtones, the rāga-rasa emotional matrix, bīja mantras, and frequency-based healing protocols all converge here. Domain 3's Sāmaveda feeds directly into this domain as its Vedic root. Of the seven Sapta Swaras, <span style="color:#d4728a">Dhaivata (Dha)</span> and <span style="color:#8892e0">Niṣāda (Ni)</span> carry special structural importance in rāga grammar — highlighted throughout.</p>
+    </div>
+    <div class="domain-meta">
+      <div class="meta-item">Timeline</div>
+      <span class="meta-val">Weeks 8–16</span>
+      <div class="meta-item">Subdomains</div>
+      <span class="meta-val">6 of 9</span>
+      <div class="meta-item">Primary URLs</div>
+      <a class="url-link" href="https://nada-chikitsa.culturalmusings.com" target="_blank">nada-chikitsa<br>.culturalmusings.com</a>
+    </div>
+  </div>
+
+  <div class="section-title">Six Subdomains</div>
+  <div class="subdomain-grid">
+
+    <!-- SD 4.1: Nada Brahma -->
+    <div class="sd-card d4-card" id="sd-4-1">
+      <div class="sd-header" onclick="toggleSD('sd-4-1')">
+        <span class="sd-num">4.1</span>
+        <div class="sd-titles">
+          <div class="sd-title">Nāda Brahma — Sound as the Basis of Creation</div>
+          <div class="sd-skt">नादब्रह्म — Nāda-Brahma · "Sound is Brahman"</div>
+        </div>
+        <span class="sd-status status-ns">Not Started</span>
+        <span class="sd-expand">▾</span>
+      </div>
+      <div class="sd-body">
+        <div class="sd-body-inner">
+          <div class="content-block">
+            <h4>The Two Categories of Sound</h4>
+            <p>All of Indian sound theory rests on the fundamental distinction between <strong style="color:var(--gold)">Āhata Nāda</strong> (struck sound — produced by physical collision) and <strong style="color:var(--gold)">Anāhata Nāda</strong> (unstruck sound — the cosmic ground vibration). Ordinary music, speech, and percussion are all Āhata. The primordial Oṃkāra and the resonance of the universe itself is Anāhata. All musical practice is ultimately an attempt to align Āhata frequencies with the Anāhata ground.</p>
+          </div>
+          <div class="info-grid">
+            <div class="info-cell">
+              <div class="ic-label">Āhata Nāda (आहत नाद)</div>
+              <div class="ic-val">Struck / audible sound. Produced by physical contact. All musical instruments, voice, percussion. Subject to decay, distance attenuation. What the outer ear hears. Can be measured in Hz.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Anāhata Nāda (अनाहत नाद)</div>
+              <div class="ic-val">Unstruck / cosmic sound. The 4th Cakra (Anāhata) resonates with this. In Kashmir Śaivism, identified with Spanda (Domain 5.6). In modern physics, has structural parallel with quantum vacuum fluctuations.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Oṃkāra as Sa (षड्ज)</div>
+              <div class="ic-val">The swara Sa (Ṣaḍja) is identified with Oṃkāra as the ground tone from which all other swaras arise. Physically: the fundamental frequency from which the harmonic series builds. Sa is never "out of tune" — it defines the tonic.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Dha &amp; Ni in Cosmic Sound</div>
+              <div class="ic-val"><span class="swara-tag dha">Dha</span> (Dhaivata) is the 6th harmonic partial — the natural major 6th. It marks the upper threshold of the comfortable human voice range. <span class="swara-tag ni">Ni</span> (Niṣāda) is the 7th harmonic — the blue note of the series, creating longing (viyoga) by its proximity to the octave Sa.</div>
+            </div>
+          </div>
+          <div class="content-block" style="margin-top:1rem">
+            <h4>Key Sanskrit Terms</h4>
+            <div class="key-concepts">
+              <span class="skt-term">Nāda (नाद)</span>
+              <span class="skt-term">Brahma (ब्रह्म)</span>
+              <span class="skt-term">Āhata (आहत)</span>
+              <span class="skt-term">Anāhata (अनाहत)</span>
+              <span class="skt-term">Oṃkāra (ॐकार)</span>
+              <span class="skt-term">Spanda (स्पन्द)</span>
+              <span class="skt-term">Śabda (शब्द)</span>
+              <span class="skt-term">Parā (परा)</span>
+              <span class="skt-term">Paśyantī (पश्यन्ती)</span>
+              <span class="skt-term">Madhyamā (मध्यमा)</span>
+              <span class="skt-term">Vaikharī (वैखरी)</span>
+            </div>
+          </div>
+          <div class="content-block">
+            <h4>Four Levels of Sound (Śabda Caturṣṭaya)</h4>
+            <p>Sound moves through four levels from causal to manifest: <span class="skt-term">Parā</span> (transcendent, cosmic, unmanifest) → <span class="skt-term">Paśyantī</span> (visionary, seen-sound, at navel centre) → <span class="skt-term">Madhyamā</span> (intermediate, at heart) → <span class="skt-term">Vaikharī</span> (spoken/articulated, at throat). All Vedic chanting and rāga performance works with these four levels simultaneously.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SD 4.2: Melakarta Ragas -->
+    <div class="sd-card d4-card" id="sd-4-2">
+      <div class="sd-header" onclick="toggleSD('sd-4-2')">
+        <span class="sd-num">4.2</span>
+        <div class="sd-titles">
+          <div class="sd-title">72 Melakarta Rāgas (Carnatic) &amp; 84+ Hindustani Rāgas</div>
+          <div class="sd-skt">मेलकर्ता — Mela-Kartā · "Parent Scale Creator"</div>
+        </div>
+        <span class="sd-status status-ns">Not Started</span>
+        <span class="sd-expand">▾</span>
+      </div>
+      <div class="sd-body">
+        <div class="sd-body-inner">
+          <div class="content-block">
+            <h4>The Melakarta System</h4>
+            <p>The Carnatic <strong style="color:var(--gold)">72 Melakarta scheme</strong> (established by Veṅkaṭamakhin in the 17th century) classifies all possible parent scales using all 7 swaras in a strict mathematical framework. Each Melakarta contains <strong style="color:var(--gold)">Sa and Pa as fixed swaras</strong>, while Re, Ga, Ma, Dha, and Ni vary across their variant forms. This gives 72 distinct parent scales from which hundreds of child rāgas (janya rāgas) derive.</p>
+          </div>
+          <div class="info-grid">
+            <div class="info-cell">
+              <div class="ic-label">Dha Variants — Critical</div>
+              <div class="ic-val"><span class="swara-tag dha">Dha 1</span> Śuddha Dhaivata (minor 6th) · <span class="swara-tag dha">Dha 2</span> Catuḥśruti Dhaivata (major 6th) · <span class="swara-tag dha">Dha 3</span> Ṣaṭśruti Dhaivata (augmented 6th). Dha variants define the emotional character of 36 of the 72 Melakartas.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Ni Variants — Critical</div>
+              <div class="ic-val"><span class="swara-tag ni">Ni 1</span> Śuddha Niṣāda (minor 7th) · <span class="swara-tag ni">Ni 2</span> Kaiśiki Niṣāda (major 7th flat) · <span class="swara-tag ni">Ni 3</span> Kākali Niṣāda (major 7th). Ni variants determine whether a rāga resolves peacefully to Sa or creates tension and longing.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Chakra System</div>
+              <div class="ic-val">The 72 Melakartas are grouped into 12 Cakras of 6 rāgas each. Cakra name encodes the swara combination. E.g., Indu Cakra (1-6): Kanakāṅgī to Tānarūpī, all using Dha1-Ni1.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Hindustani System</div>
+              <div class="ic-val">The Hindustani tradition uses 10 parent Thāṭs (Bhatkhande system) from which 84+ principal rāgas derive. While fewer parent scales, rāgas have complex additional rules (āroh/avaroh, vādī/samvādī, gāndharva).</div>
+            </div>
+          </div>
+          <div class="content-block" style="margin-top:1rem">
+            <h4>Key Sanskrit Terms</h4>
+            <div class="key-concepts">
+              <span class="skt-term">Melakarta (मेलकर्ता)</span>
+              <span class="skt-term">Janya Rāga (जन्य राग)</span>
+              <span class="skt-term">Thāṭ (थाट)</span>
+              <span class="skt-term">Vādī (वादी)</span>
+              <span class="skt-term">Samvādī (संवादी)</span>
+              <span class="skt-term">Ārohana (आरोहण)</span>
+              <span class="skt-term">Avarohana (अवरोहण)</span>
+              <span class="skt-term">Cakra (चक्र)</span>
+              <span class="skt-term">Kākali Ni (काकली नी)</span>
+              <span class="skt-term">Śuddha (शुद्ध)</span>
+            </div>
+          </div>
+          <div class="content-block">
+            <h4>Reference URLs</h4>
+            <div class="ref-links">
+              <a class="ref-link" href="https://melakarta.com" target="_blank">melakarta.com</a>
+              <a class="ref-link" href="https://ragajunglism.org/ragas/masterlist" target="_blank">ragajunglism.org</a>
+              <a class="ref-link" href="https://ragamath.com" target="_blank">ragamath.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SD 4.3: Raga-Rasa Matrix -->
+    <div class="sd-card d4-card" id="sd-4-3">
+      <div class="sd-header" onclick="toggleSD('sd-4-3')">
+        <span class="sd-num">4.3</span>
+        <div class="sd-titles">
+          <div class="sd-title">Rāga-Rasa Emotional Matrix — 9 Rasas Mapped to Rāgas</div>
+          <div class="sd-skt">राग-रस — Rāga-Rasa · "Colour-Emotion-Essence"</div>
+        </div>
+        <span class="sd-status status-ns">Not Started</span>
+        <span class="sd-expand">▾</span>
+      </div>
+      <div class="sd-body">
+        <div class="sd-body-inner">
+          <div class="content-block">
+            <h4>The Nine Rasas (Navarasa)</h4>
+            <p>Bharata Muni's Natya Shastra established the <strong style="color:var(--gold)">nine permanent emotional states (Sthāyibhāva)</strong> that music, drama, and dance evoke. Each rāga has a primary rasa association based on its swara set, movement, and time of performance. The rāga-rasa matrix is the bridge between Domain 2 (Natya Shastra) and Domain 4.</p>
+          </div>
+          <div class="rasa-grid">
+            <div class="rasa-cell">
+              <div class="rasa-name">Śṛṅgāra</div>
+              <div class="rasa-skt">शृङ्गार · Love</div>
+              <div class="rasa-raga">Bhairavi, Yaman, Kāfī</div>
+            </div>
+            <div class="rasa-cell">
+              <div class="rasa-name">Hāsya</div>
+              <div class="rasa-skt">हास्य · Joy</div>
+              <div class="rasa-raga">Bhūpāli, Durgā</div>
+            </div>
+            <div class="rasa-cell">
+              <div class="rasa-name">Karuṇa</div>
+              <div class="rasa-skt">करुण · Pathos</div>
+              <div class="rasa-raga">Todi, Bhairavī, Mālkauns</div>
+            </div>
+            <div class="rasa-cell">
+              <div class="rasa-name">Raudra</div>
+              <div class="rasa-skt">रौद्र · Fury</div>
+              <div class="rasa-raga">Kānaḍā, Mallār</div>
+            </div>
+            <div class="rasa-cell">
+              <div class="rasa-name">Vīra</div>
+              <div class="rasa-skt">वीर · Heroism</div>
+              <div class="rasa-raga">Bhairav, Darbārī</div>
+            </div>
+            <div class="rasa-cell">
+              <div class="rasa-name">Bhayānaka</div>
+              <div class="rasa-skt">भयानक · Terror</div>
+              <div class="rasa-raga">Āhīr Bhairav, Vibhās</div>
+            </div>
+            <div class="rasa-cell">
+              <div class="rasa-name">Bībhatsa</div>
+              <div class="rasa-skt">बीभत्स · Disgust</div>
+              <div class="rasa-raga">Kalyāṇ (dark)</div>
+            </div>
+            <div class="rasa-cell">
+              <div class="rasa-name">Adbhuta</div>
+              <div class="rasa-skt">अद्भुत · Wonder</div>
+              <div class="rasa-raga">Yaman, Bihāg</div>
+            </div>
+            <div class="rasa-cell">
+              <div class="rasa-name">Śānta</div>
+              <div class="rasa-skt">शान्त · Peace</div>
+              <div class="rasa-raga">Bhūpāli, Yaman Kalyāṇ</div>
+            </div>
+          </div>
+          <div class="content-block" style="margin-top:1rem">
+            <h4>Dha &amp; Ni as Emotional Modulators</h4>
+            <p>The specific variant of <span class="swara-tag dha">Dha</span> and <span class="swara-tag ni">Ni</span> in a rāga is the primary determinant of its rasa character. Śuddha Dha + Kākali Ni (major 7th) creates resolution and peace (Śānta, Śṛṅgāra). Komal Dha + Komal Ni (minor variants) creates pathos and longing (Karuṇa). The medical hypothesis in Domain 7 is that these harmonic relationships trigger specific neurochemical responses — verifiable through modern bioacoustics research.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SD 4.4: Mantra Shastra -->
+    <div class="sd-card d4-card" id="sd-4-4">
+      <div class="sd-header" onclick="toggleSD('sd-4-4')">
+        <span class="sd-num">4.4</span>
+        <div class="sd-titles">
+          <div class="sd-title">Mantra Śāstra — Bīja Mantras, Nyāsa &amp; Mātṛkā</div>
+          <div class="sd-skt">मन्त्रशास्त्र — Mantra-Śāstra · "Science of Sacred Formulae"</div>
+        </div>
+        <span class="sd-status status-ns">Not Started</span>
+        <span class="sd-expand">▾</span>
+      </div>
+      <div class="sd-body">
+        <div class="sd-body-inner">
+          <div class="content-block">
+            <h4>Bīja Mantras — Seed Syllables</h4>
+            <p>Bīja mantras are single-syllable sound units carrying concentrated energy. They are the atomic units of the mantra system. Each Bīja corresponds to a deity, element, cakra, and frequency range. The 50 letters of the Sanskrit alphabet (Mātṛkā) are themselves considered Bījas — sonic embodiments of creative energy.</p>
+          </div>
+          <div class="info-grid">
+            <div class="info-cell">
+              <div class="ic-label">Primary Bīja Mantras</div>
+              <div class="ic-val">OM (ॐ) · HRĪM (ह्रीं) · ŚRĪM (श्रीं) · KLĪM (क्लीं) · AIṂ (ऐं) · GAṂ (गं) · HAUṂ (हौं) · DUM (दुं) · KRĪM (क्रीं) · PHAṬ (फट्)</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Nyāsa (न्यास)</div>
+              <div class="ic-val">The practice of "placing" mantras on the body at specific points. Aṅga-nyāsa (six body parts), Kara-nyāsa (ten fingers). Each placement corresponds to a swara frequency — direct link to Marma point therapy in Domain 7.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Mātṛkā (मातृका)</div>
+              <div class="ic-val">The 50 Sanskrit phonemes arranged in a sacred grid. Each letter is a Śakti (power). Mātṛkā-nyāsa assigns each phoneme to a body point, effectively creating a frequency map of the human body in sound.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Soundarya Laharī</div>
+              <div class="ic-val">100 verses by Śaṅkarācārya describing the Śrī Yantra and the Devī as sound-form. Contains embedded svara sequences and mantra architecture — a key cross-reference with Domain 1 Sacred Geometry.</div>
+            </div>
+          </div>
+          <div class="content-block" style="margin-top:1rem">
+            <h4>Key Sanskrit Terms</h4>
+            <div class="key-concepts">
+              <span class="skt-term">Bīja (बीज)</span>
+              <span class="skt-term">Mātṛkā (मातृका)</span>
+              <span class="skt-term">Nyāsa (न्यास)</span>
+              <span class="skt-term">Kavaca (कवच)</span>
+              <span class="skt-term">Japa (जप)</span>
+              <span class="skt-term">Stotra (स्तोत्र)</span>
+              <span class="skt-term">Pañcadaśī (पञ्चदशी)</span>
+              <span class="skt-term">Ṣoḍaśī (षोडशी)</span>
+              <span class="skt-term">Soundarya Laharī (सौन्दर्यलहरी)</span>
+            </div>
+          </div>
+          <div class="content-block">
+            <h4>Reference URLs</h4>
+            <div class="ref-links">
+              <a class="ref-link" href="https://www.vedadhara.com/english-topics-mantra-shastra" target="_blank">vedadhara.com — Mantra Śāstra</a>
+              <a class="ref-link" href="https://github.com/Ishanoshada/Soundarya-Lahari-Mantra-Finder" target="_blank">github — Soundarya Laharī</a>
+              <a class="ref-link" href="https://www.sujatanandy.com/the-nyasas-of-tantric-rituals/" target="_blank">sujatanandy.com — Nyāsa</a>
+              <a class="ref-link" href="https://www.nathas.org/en/dictionary/matrika-nyasa/" target="_blank">nathas.org — Mātṛkā</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SD 4.5: Bioacoustics -->
+    <div class="sd-card d4-card" id="sd-4-5">
+      <div class="sd-header" onclick="toggleSD('sd-4-5')">
+        <span class="sd-num">4.5</span>
+        <div class="sd-titles">
+          <div class="sd-title">Bioacoustics &amp; Psychoacoustics — Frequency Ranges &amp; Healing Protocols</div>
+          <div class="sd-skt">नादचिकित्सा — Nāda Cikitsā · "Sound Therapy"</div>
+        </div>
+        <span class="sd-status status-ns">Not Started</span>
+        <span class="sd-expand">▾</span>
+      </div>
+      <div class="sd-body">
+        <div class="sd-body-inner">
+          <div class="content-block">
+            <h4>The Medical Bridge — Gap Analysis Required</h4>
+            <p>This is the most scientifically complex subdomain. Ancient Nāda Cikitsā claims that specific rāgas and mantras produce healing effects at the biological level. Modern psychoacoustics and neuroscience have partially verified some of these claims. This subdomain must present both levels with honest gap annotation (established / emerging / hypothetical).</p>
+          </div>
+          <div class="info-grid">
+            <div class="info-cell">
+              <div class="ic-label">Established (Modern Verification)</div>
+              <div class="ic-val">Music-induced analgesia (pain reduction). Rhythm entrainment and brainwave synchronisation (theta/alpha states during slow rāgas). Music therapy for anxiety, depression, PTSD showing clinical effects. Heart rate variability modulation by slow ragas.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Emerging (Partial Evidence)</div>
+              <div class="ic-val">Rāga Yaman (evening) correlating with serotonin modulation. Sanskrit mantra chanting and vagal nerve stimulation. Specific Hz frequencies (40Hz gamma entrainment) showing Alzheimer's benefit in early trials.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Hypothetical (To Be Researched)</div>
+              <div class="ic-val">Specific Melakarta rāga-to-doṣa correlation (Vāta/Pitta/Kapha). Marma point sound therapy with specific Hz. Bīja mantra frequencies measurable in scalar wave ranges. DNA repair through 528Hz. These require formal clinical trials.</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Dha &amp; Ni Frequency Research</div>
+              <div class="ic-val"><span class="swara-tag dha">Dha</span> (Dhaivata) at Sa=261.63Hz → Dha ≈ 435–440Hz. This is the A4 note — the international tuning standard has Vedic resonance implications. <span class="swara-tag ni">Ni</span> (Niṣāda) at ≈ 493–495Hz corresponds to the B note — documented in 432Hz tuning research.</div>
+            </div>
+          </div>
+          <div class="content-block" style="margin-top:1rem">
+            <h4>Reference URLs</h4>
+            <div class="ref-links">
+              <a class="ref-link" href="https://nada-chikitsa.culturalmusings.com/" target="_blank">nada-chikitsa.culturalmusings.com</a>
+              <a class="ref-link" href="https://bioresonancemusings.culturalmusings.com/" target="_blank">bioresonancemusings.culturalmusings.com</a>
+              <a class="ref-link" href="https://spandanashodha.culturalmusings.com/" target="_blank">spandanashodha.culturalmusings.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SD 4.6: 22 Shrutis -->
+    <div class="sd-card d4-card" id="sd-4-6">
+      <div class="sd-header" onclick="toggleSD('sd-4-6')">
+        <span class="sd-num">4.6</span>
+        <div class="sd-titles">
+          <div class="sd-title">22 Śrutis — The Physics of Indian Microtonal Intervals</div>
+          <div class="sd-skt">द्वाविंशति श्रुतयः — Dvāviṃśati Śrutayaḥ · "Twenty-Two Heard Intervals"</div>
+        </div>
+        <span class="sd-status status-ns">Not Started</span>
+        <span class="sd-expand">▾</span>
+      </div>
+      <div class="sd-body">
+        <div class="sd-body-inner">
+          <div class="content-block">
+            <h4>The 22 Śruti System</h4>
+            <p>The Nāṭyaśāstra (Chapter 28) and Dattilam establish the Indian octave as divided into <strong style="color:var(--gold)">22 distinct microtonal intervals (śrutis)</strong> rather than the Western 12. These are distributed unevenly across the swaras: Sa=4, Re=3, Ga=2, Ma=4, Pa=4, Dha=3, Ni=2 = 22 total. The Dhaivata and Niṣāda positions are highlighted below as they carry the most complex śruti variants.</p>
+          </div>
+          <div class="shruti-wrap">
+            <table class="shruti-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Śruti Name</th>
+                  <th>Swara</th>
+                  <th>Sanskrit Name</th>
+                  <th>Ratio</th>
+                  <th>Hz (Sa=240)</th>
+                  <th>Quality</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>1</td><td>Tīvrā</td><td class="sw-col">Sa</td><td>षड्ज</td><td>1:1</td><td>240.00</td><td>Ground tone</td></tr>
+                <tr><td>2</td><td>Kumudvatī</td><td class="sw-col">Sa</td><td>षड्ज</td><td>256:243</td><td>252.86</td><td>Limma</td></tr>
+                <tr><td>3</td><td>Mandā</td><td class="sw-col">Sa</td><td>षड्ज</td><td>16:15</td><td>256.00</td><td>Minor semitone</td></tr>
+                <tr><td>4</td><td>Chandovatī</td><td class="sw-col">Sa</td><td>षड्ज</td><td>10:9</td><td>266.67</td><td>Minor whole</td></tr>
+                <tr><td>5</td><td>Dayāvatī</td><td class="sw-col">Re</td><td>ऋषभ</td><td>9:8</td><td>270.00</td><td>Major whole</td></tr>
+                <tr><td>6</td><td>Ranjanī</td><td class="sw-col">Re</td><td>ऋषभ</td><td>32:27</td><td>284.44</td><td>Pythagorean m3</td></tr>
+                <tr><td>7</td><td>Raktikā</td><td class="sw-col">Re</td><td>ऋषभ</td><td>6:5</td><td>288.00</td><td>Minor third</td></tr>
+                <tr><td>8</td><td>Raudrī</td><td class="sw-col">Ga</td><td>गांधार</td><td>5:4</td><td>300.00</td><td>Major third</td></tr>
+                <tr><td>9</td><td>Krodhinī</td><td class="sw-col">Ga</td><td>गांधार</td><td>81:64</td><td>303.75</td><td>Pythagorean M3</td></tr>
+                <tr><td>10</td><td>Vajrikā</td><td class="sw-col">Ma</td><td>मध्यम</td><td>4:3</td><td>320.00</td><td>Perfect fourth</td></tr>
+                <tr><td>11</td><td>Prasāriṇī</td><td class="sw-col">Ma</td><td>मध्यम</td><td>27:20</td><td>324.00</td><td>Acute fourth</td></tr>
+                <tr><td>12</td><td>Prīti</td><td class="sw-col">Ma</td><td>मध्यम</td><td>45:32</td><td>337.50</td><td>Augmented fourth</td></tr>
+                <tr><td>13</td><td>Mārjanī</td><td class="sw-col">Ma</td><td>मध्यम</td><td>729:512</td><td>341.72</td><td>Pythagorean +4</td></tr>
+                <tr><td>14</td><td>Kṣiti</td><td class="sw-col">Pa</td><td>पञ्चम</td><td>3:2</td><td>360.00</td><td>Perfect fifth</td></tr>
+                <tr><td>15</td><td>Raktā</td><td class="sw-col">Pa</td><td>पञ्चम</td><td>128:85</td><td>361.41</td><td>Near fifth</td></tr>
+                <tr><td>16</td><td>Sandīpanī</td><td class="sw-col">Pa</td><td>पञ्चम</td><td>8:5</td><td>384.00</td><td>Minor sixth</td></tr>
+                <tr><td>17</td><td>Ālāpinī</td><td class="sw-col">Pa</td><td>पञ्चम</td><td>5:3</td><td>400.00</td><td>Major sixth</td></tr>
+                <tr class="dha-row"><td>18</td><td>Madantī</td><td class="sw-col">Dha</td><td>धैवत</td><td>27:16</td><td>405.00</td><td>Pythagorean M6 ★</td></tr>
+                <tr class="dha-row"><td>19</td><td>Rohiṇī</td><td class="sw-col">Dha</td><td>धैवत</td><td>16:9</td><td>426.67</td><td>Minor seventh</td></tr>
+                <tr class="dha-row"><td>20</td><td>Ramyā</td><td class="sw-col">Dha</td><td>धैवत</td><td>9:5</td><td>432.00</td><td>Acute minor 7th ★</td></tr>
+                <tr class="ni-row"><td>21</td><td>Ugrā</td><td class="sw-col">Ni</td><td>निषाद</td><td>15:8</td><td>450.00</td><td>Major seventh ★</td></tr>
+                <tr class="ni-row"><td>22</td><td>Kṣobhinī</td><td class="sw-col">Ni</td><td>निषाद</td><td>243:128</td><td>455.63</td><td>Pythagorean M7 ★</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="content-block" style="margin-top:1rem">
+            <h4>Why Dha and Ni are structurally pivotal</h4>
+            <p>Of the 22 śrutis, the <span style="color:#d4728a">Dha range (śrutis 18–20)</span> and the <span style="color:#8892e0">Ni range (śrutis 21–22)</span> collectively span the most emotionally charged zone of the octave — the region between the perfect fifth (Pa) and the octave (Sa). Physically this is the zone where the natural harmonic series creates its most complex intervals (the 6th and 7th harmonics). Musically this is where every rāga's characteristic emotional signature is determined. The choice of which Dha and Ni variant appears in the ārohana vs avarohana of a rāga is often the single most important rule defining that rāga's identity.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /subdomain-grid -->
+</div><!-- /tab-d4 -->
+
+
+<!-- ═══════════════════════════════════════════════════════════ SAPTA SWARA -->
+<div id="tab-sapta" class="tab-panel">
+
+  <div class="domain-intro">
+    <div>
+      <div class="d-label">Sapta Swara Reference — Cross-Domain Anchor</div>
+      <h2>The Seven Sacred Swaras</h2>
+      <div class="skt">सप्त स्वर — Sapta Svara · "Seven Self-Luminous Tones"</div>
+      <p>The Sapta Swaras are the fundamental building blocks of all Indian music theory. They appear first in the Sāmaveda as seven chanting tones, are theorized in the Nāṭyaśāstra, and find their fullest elaboration in later texts like the Saṅgīta Ratnākara. Two swaras receive special emphasis here as requested: <span style="color:#d4728a">Dhaivata (Dha)</span> and <span style="color:#8892e0">Niṣāda (Ni)</span> — the 6th and 7th tones whose variants determine the emotional character of every rāga in both Carnatic and Hindustani traditions.</p>
+    </div>
+  </div>
+
+  <div class="section-title">Complete Sapta Swara Reference</div>
+
+  <div class="swara-table-wrap">
+    <table class="swara-table">
+      <thead>
+        <tr>
+          <th>Swara</th>
+          <th>Solfège</th>
+          <th>Devanāgarī</th>
+          <th>Full Sanskrit Name</th>
+          <th>Meaning / Etymology</th>
+          <th>Presiding Deity</th>
+          <th>Associated Bird/Animal</th>
+          <th>Sāmaveda Tone</th>
+          <th>Rāga Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="sw-name">Sa</span></td>
+          <td class="sw-skt">Ṣaḍja</td>
+          <td class="sw-dev">ष</td>
+          <td class="sw-skt">षड्ज — Ṣaḍ-ja</td>
+          <td>"Born of six" — resonates in all six body cavities (nose, throat, chest, head, palate, navel). The ground tone.</td>
+          <td>Brahmā (Creator)</td>
+          <td>Peacock (Mayūra)</td>
+          <td>Ṣaḍja / Krūṣṭa</td>
+          <td>Fixed tonic. Never omitted. The anchor. Sa = 1:1 ratio. Oṃkāra resonance.</td>
+        </tr>
+        <tr>
+          <td><span class="sw-name">Re</span></td>
+          <td class="sw-skt">Ṛṣabha</td>
+          <td class="sw-dev">र</td>
+          <td class="sw-skt">ऋषभ — Ṛṣabha</td>
+          <td>"Bull" — strength and auspiciousness. Three śruti variants (Komal, Śuddha, Tīvra Re).</td>
+          <td>Agni (Fire)</td>
+          <td>Bull / Skylark (Cātaka)</td>
+          <td>Ṛṣabha / Prathama</td>
+          <td>Often vādī (dominant) in Bhairav family rāgas. Komal Re = pathos.</td>
+        </tr>
+        <tr>
+          <td><span class="sw-name">Ga</span></td>
+          <td class="sw-skt">Gāndhāra</td>
+          <td class="sw-dev">ग</td>
+          <td class="sw-skt">गांधार — Gāndhāra</td>
+          <td>"From Gāndhāra region" (NW India) — also "relating to the sky." Two variants: Komal (minor 3rd), Śuddha (major 3rd).</td>
+          <td>Viṣṇu (Sustainer)</td>
+          <td>Goat / Kōyil (Cuckoo)</td>
+          <td>Gāndhāra / Dvitīya</td>
+          <td>Critically important: Ga determines rāga's major/minor quality. Komal Ga = emotional depth.</td>
+        </tr>
+        <tr>
+          <td><span class="sw-name">Ma</span></td>
+          <td class="sw-skt">Madhyama</td>
+          <td class="sw-dev">म</td>
+          <td class="sw-skt">मध्यम — Madhyama</td>
+          <td>"Middle tone" — the fourth swara, the pivot. Two variants: Śuddha (perfect 4th), Tīvra (augmented 4th / tritone).</td>
+          <td>Śiva (Transformer)</td>
+          <td>Dove (Kapota)</td>
+          <td>Madhyama / Tṛtīya</td>
+          <td>Tīvra Ma = the "raised fourth" — transforms rāga character profoundly (as in Yaman).</td>
+        </tr>
+        <tr>
+          <td><span class="sw-name">Pa</span></td>
+          <td class="sw-skt">Pañcama</td>
+          <td class="sw-dev">प</td>
+          <td class="sw-skt">पञ्चम — Pañcama</td>
+          <td>"Fifth note" — the perfect fifth, the most consonant interval after the octave. Fixed: never altered. 3:2 ratio.</td>
+          <td>Viṣṇu (again, as sustainer)</td>
+          <td>Koel/Cuckoo (Kokila)</td>
+          <td>Pañcama / Caturtha</td>
+          <td>Second fixed tone (after Sa). Its omission marks a distinctive class of rāgas (Mālkauns, Todi).</td>
+        </tr>
+        <tr class="row-dha">
+          <td><span class="sw-name">Dha <span class="emphasis-badge badge-dha">FOCUS</span></span></td>
+          <td class="sw-skt">Dhaivata</td>
+          <td class="sw-dev">ध</td>
+          <td class="sw-skt">धैवत — Dhaivatī</td>
+          <td>"Relating to the celestial beings (Deva)" — the sixth swara. Three variants in Carnatic (Śuddha, Catuḥśruti, Ṣaṭśruti Dha); two in Hindustani (Komal, Śuddha Dha).</td>
+          <td>Gaṇeśa (Remover of Obstacles)</td>
+          <td>Horse (Aśva) / Frog (Maṇḍūka)</td>
+          <td>Caturtha</td>
+          <td>The most emotionally rich swara. Śuddha Dha = warmth, completeness. Komal Dha = longing, bhakti. Dha is the vādī in rāgas like Bhūpāli, Āhīr Bhairav. The 432Hz tuning debate centres on Dha's frequency.</td>
+        </tr>
+        <tr class="row-ni">
+          <td><span class="sw-name">Ni <span class="emphasis-badge badge-ni">FOCUS</span></span></td>
+          <td class="sw-skt">Niṣāda</td>
+          <td class="sw-dev">नि</td>
+          <td class="sw-skt">निषाद — Niṣāda</td>
+          <td>"Sitting on / dwelling" — from ni+sad ("to sit near"). The seventh and final swara before the octave. Creates maximum tension toward resolution. Three Carnatic variants: Śuddha (Ni1), Kaiśiki (Ni2/Komal), Kākali (Ni3/Śuddha Major).</td>
+          <td>Sūrya (Sun)</td>
+          <td>Elephant (Gaja)</td>
+          <td>Mandra / Atisvarya</td>
+          <td>Kākali Ni (major 7th) = resolution, devotion, Śānta rasa. Komal Ni = longing, Karuṇa rasa. Ni is the defining note in Bhairavi (Komal Ni), Yaman (Śuddha Ni), and the rāgas of the Kāfī thāṭ. Its proximity to the upper Sa creates the yearning that is the essence of all Indian melodic expression.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title">Deep Notes — Dha &amp; Ni in the Sanskrit Tradition</div>
+
+  <div class="info-grid" style="margin-bottom:1.5rem">
+    <div class="info-cell">
+      <div class="ic-label" style="color:#d4728a">Dhaivata — षट्‍श्रुति (Six-Shruti Dha)</div>
+      <div class="ic-val">The Saṅgīta Ratnākara (13th century, Śārṅgadeva) gives Dhaivata the Śruti-s Madantī, Rohiṇī, and Ramyā. The name Dhaivata (धैवत) derives from Deva — the celestial register. In the Sāmaveda scale it maps to the Caturtha tone ("the fourth"), which in Vedic practice is the note used for the most sonorous and sustained syllables of the sāman. Modern research: 432Hz (approximate Dha when Sa=256Hz) is documented to show different cellular response patterns than 440Hz. This is one of the most active areas in bioacoustic research.</div>
+    </div>
+    <div class="info-cell">
+      <div class="ic-label" style="color:#8892e0">Niṣāda — The "Da Da Da" Connection</div>
+      <div class="ic-val">The name Niṣāda (निषाद) has a remarkable double significance. As a swara, it is the seventh tone. But Niṣāda also refers to the forest-dwelling people (the Niṣāda tribe) in Sanskrit literature — those who "sit in the forest" in proximity to both society and wilderness. In the Bṛhadāraṇyaka Upaniṣad, the threefold teaching is given through the syllable "Da" (दा) repeated three times: Damyata (restrain), Datta (give), Dayādhvam (be compassionate). This Da — the same phoneme as the swara Dhaivata — becomes the sonic anchor for the entire philosophical teaching. The 7th swara Ni thus points both upward to the octave (the divine) and backward to Da (the foundational instruction).</div>
+    </div>
+  </div>
+
+  <div class="synthesis-point">
+    <div class="sp-label">Cross-Domain Synthesis Point</div>
+    <h3>Dha &amp; Ni as the "Resolution Zone" — Medical Hypothesis</h3>
+    <p>In standard Western psychoacoustics, the interval from the 5th (Pa) to the octave (Sa) — the zone occupied by Dha and Ni — is where the "leading tone" effect operates: the listener's nervous system creates anticipation of resolution. In Indian theory, this same zone is explicitly mapped to the emotional states of longing (viyoga), devotion (bhakti), and transcendence (Śānta rasa). The Domain 7 Medical hypothesis proposes that the specific śruti-level frequency differences between Dha1/Dha2/Dha3 and Ni1/Ni2/Ni3 trigger measurable differential activation in the limbic system and prefrontal cortex — verifiable via fMRI/EEG studies using Carnatic rāgas with controlled swara variations. This would be the first modern clinical validation of the ancient śruti system.</p>
+  </div>
+
+</div><!-- /tab-sapta -->
+
+
+<!-- ═══════════════════════════════════════════════════════════ CROSS-DOMAIN BRIDGE -->
+<div id="tab-bridge" class="tab-panel">
+
+  <div class="domain-intro">
+    <div>
+      <div class="d-label">Cross-Domain Bridge — The Critical Synthesis Path</div>
+      <h2>Sāmaveda → Rāga Genesis Chain</h2>
+      <div class="skt">सामवेद → राग — The Unbroken Line of Sound</div>
+      <p>The most important single cross-domain connection in the entire Grand Synthesis. Tracing how the seven chanting tones of the Sāmaveda evolved, over approximately 2,500 years, into the full Melakarta rāga system of Carnatic music and the thāṭ system of Hindustani music. This is not metaphor — it is a traceable philological, musical, and theoretical lineage.</p>
+    </div>
+  </div>
+
+  <div class="section-title">The Lineage Chain</div>
+
+  <div class="bridge-flow">
+    <div class="bridge-node teal-node">
+      <div class="bn-title">Root</div>
+      <div class="bn-skt">Sāmaveda</div>
+      <div class="bn-en">7 Sāman Tones<br>~1200 BCE</div>
+    </div>
+    <div class="bridge-arrow">→</div>
+    <div class="bridge-node">
+      <div class="bn-title">Step 1</div>
+      <div class="bn-skt">Gāndhārva Veda</div>
+      <div class="bn-en">Music Science Upaveda<br>~800–400 BCE</div>
+    </div>
+    <div class="bridge-arrow">→</div>
+    <div class="bridge-node">
+      <div class="bn-title">Step 2</div>
+      <div class="bn-skt">Grāma System</div>
+      <div class="bn-en">Sa-grāma, Ma-grāma<br>Nāṭyaśāstra ~200 BCE</div>
+    </div>
+    <div class="bridge-arrow">→</div>
+    <div class="bridge-node">
+      <div class="bn-title">Step 3</div>
+      <div class="bn-skt">Mūrchanā / Jāti</div>
+      <div class="bn-en">Mode rotations<br>→ proto-Rāga</div>
+    </div>
+    <div class="bridge-arrow">→</div>
+    <div class="bridge-node">
+      <div class="bn-title">Step 4</div>
+      <div class="bn-skt">Rāga System</div>
+      <div class="bn-en">Matanga's Bṛhaddeśī<br>~700 CE — Rāga defined</div>
+    </div>
+    <div class="bridge-arrow">→</div>
+    <div class="bridge-node saffron-node">
+      <div class="bn-title">Step 5</div>
+      <div class="bn-skt">Melakarta / Thāṭ</div>
+      <div class="bn-en">Venkaṭamakhin ~1620<br>Bhatkhande ~1900</div>
+    </div>
+  </div>
+
+  <div class="section-title">Stage-by-Stage Analysis</div>
+
+  <div class="subdomain-grid">
+    <div class="sd-card" id="bridge-1" style="border-left:3px solid var(--teal)">
+      <div class="sd-header" onclick="toggleSD('bridge-1')">
+        <span class="sd-num">B1</span>
+        <div class="sd-titles">
+          <div class="sd-title">Sāmaveda → Gāndhārva Veda: The Seven Tones Named</div>
+        </div>
+        <span class="sd-expand">▾</span>
+      </div>
+      <div class="sd-body">
+        <div class="sd-body-inner">
+          <div class="content-block">
+            <h4>The Seven Sāman Tones → Sapta Swaras</h4>
+          </div>
+          <table class="sutra-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Sāman Tone</th>
+                <th>Sanskrit</th>
+                <th>Direction</th>
+                <th>Modern Mapping</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Prathama</td><td class="skt-col">प्रथम</td><td>Highest</td><td>Ni (7th, highest in the Sāma descending scale)</td></tr>
+              <tr><td>2</td><td>Dvitīya</td><td class="skt-col">द्वितीय</td><td>↓</td><td>Dha</td></tr>
+              <tr><td>3</td><td>Tṛtīya</td><td class="skt-col">तृतीय</td><td>↓</td><td>Pa</td></tr>
+              <tr><td>4</td><td>Caturtha</td><td class="skt-col">चतुर्थ</td><td>↓</td><td>Ma</td></tr>
+              <tr><td>5</td><td>Mandra</td><td class="skt-col">मन्द्र</td><td>↓</td><td>Ga</td></tr>
+              <tr><td>6</td><td>Krūṣṭa</td><td class="skt-col">क्रुष्ट</td><td>Lowest</td><td>Re or Sa (depending on Śākhā)</td></tr>
+              <tr><td>7</td><td>Atisvarya</td><td class="skt-col">अतिस्वर्य</td><td>Added</td><td>Sa (ground) or Ni octave above</td></tr>
+            </tbody>
+          </table>
+          <div class="content-block" style="margin-top:1rem">
+            <p>Note that the Sāmaveda scale is <strong style="color:var(--gold)">descending</strong> while the Sapta Swara scale is ascending. This inversion is one of the key philological puzzles — and it places <strong style="color:#d4728a">Dha</strong> and <strong style="color:#8892e0">Ni</strong> at the top of the Sāma scale, giving them primacy in Vedic chanting practice. The most important, most elaborated syllables in sāman performance are chanted on these upper tones.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sd-card" id="bridge-2" style="border-left:3px solid var(--saffron)">
+      <div class="sd-header" onclick="toggleSD('bridge-2')">
+        <span class="sd-num">B2</span>
+        <div class="sd-titles">
+          <div class="sd-title">Nāṭyaśāstra: The Grāma System — Bharata Muni's Sound Architecture</div>
+        </div>
+        <span class="sd-expand">▾</span>
+      </div>
+      <div class="sd-body">
+        <div class="sd-body-inner">
+          <div class="content-block">
+            <h4>Two Grāmas (Parent Scales)</h4>
+            <p>Bharata Muni (Nāṭyaśāstra Ch. 28) establishes two parent scale systems: <span class="skt-term">Ṣaḍja-grāma</span> (Sa as tonic, natural tuning system) and <span class="skt-term">Madhyama-grāma</span> (Ma as tonic, shifted tuning — Pa is slightly flatter). The difference between the two grāmas is one śruti on the Pa position. From these two grāmas, through the technique of Mūrchanā (rotation of starting note), 14 derived scales are produced — the ancestors of all rāgas.</p>
+          </div>
+          <div class="content-block">
+            <h4>Dha &amp; Ni in the Grāma System</h4>
+            <p>In Ṣaḍja-grāma: <span class="swara-tag dha">Dha</span> receives 3 śrutis (Madantī, Rohiṇī, Ramyā). <span class="swara-tag ni">Ni</span> receives 2 śrutis (Ugrā, Kṣobhinī). In Madhyama-grāma, Dha receives only 2 śrutis and Ni receives 3 — the śruti count shifts between grāmas. This is the mathematical basis of the emotional character difference between the two systems and their descendant rāgas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sd-card" id="bridge-3" style="border-left:3px solid var(--gold-dim)">
+      <div class="sd-header" onclick="toggleSD('bridge-3')">
+        <span class="sd-num">B3</span>
+        <div class="sd-titles">
+          <div class="sd-title">Three Critical Synthesis Points — Novel Scholarly Contributions</div>
+        </div>
+        <span class="sd-expand">▾</span>
+      </div>
+      <div class="sd-body">
+        <div class="sd-body-inner">
+          <div class="synthesis-point">
+            <div class="sp-label">Synthesis Point 1 — D4 ↔ D7</div>
+            <h3>Rāga-Biofrequency Clinical Correlation</h3>
+            <p>The ancient rāga system assigns specific rāgas to specific times of day, seasons, and emotional states. Modern psychoacoustics is beginning to verify some correlations. The proposal: map all 72 Melakarta rāgas against documented Hz frequency ranges, śruti variants of Dha and Ni, and their documented physiological effects. First comprehensive cross-reference of its kind. Would require: (a) full Melakarta Hz mapping, (b) fMRI/EEG studies for a representative sample of rāgas, (c) Dha/Ni variant-controlled experiments.</p>
+          </div>
+          <div class="synthesis-point">
+            <div class="sp-label">Synthesis Point 2 — D5 ↔ Modern Physics</div>
+            <h3>Spanda Doctrine &amp; Quantum Vibration Theory</h3>
+            <p>Kashmir Śaivism's Spanda doctrine holds that consciousness itself vibrates and that all creation is the pulsation of Śiva-Śakti. This has structural (not identical) parallels with quantum field theory's vacuum fluctuations and the Casimir effect. The synthesis goal is not to claim equivalence but to produce a careful comparative study clearly annotating: (a) where the parallel is structural, (b) where it is metaphorical, (c) where genuine research questions emerge.</p>
+          </div>
+          <div class="synthesis-point">
+            <div class="sp-label">Synthesis Point 3 — D1 ↔ D2</div>
+            <h3>Khadgamālā Spatial Geometry Mapped onto 108 Kāraṇas</h3>
+            <p>The Khaḍgamālā is a ritual spatial map of divine feminine presence across geometric stations (the Śrī Yantra stations). The 108 Kāraṇas are body positions in space. Mapping Khaḍgamālā geometric stations onto Kāraṇa spatial positions would create a unified body-space-divine geometry — a genuinely novel contribution. The shared anchor: both systems use the number 108, and both involve the human body in sacred geometric space. The Dha and Ni swaras, as the highest tones before resolution, would correspond to the outermost stations of the Khaḍgamālā — the point of maximum divine presence before the return to the Bindu.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /tab-bridge -->
+
+
+<!-- ═══════════════════════════════════════════════════════════ PROGRESS TRACKER -->
+<div id="tab-tracker" class="tab-panel">
+
+  <div class="domain-intro">
+    <div>
+      <div class="d-label">Progress Tracker — Domains 3 &amp; 4</div>
+      <h2>Build Status — 12 Subdomains</h2>
+      <div class="skt">Check off completed items. Notes are editable.</div>
+    </div>
+  </div>
+
+  <div class="progress-stats">
+    <div class="pstat">
+      <div class="pval" id="pct-complete">0%</div>
+      <div class="plbl">Complete</div>
+    </div>
+    <div class="pstat">
+      <div class="pval" id="count-done">0</div>
+      <div class="plbl">Done</div>
+    </div>
+    <div class="pstat">
+      <div class="pval" id="count-remain">12</div>
+      <div class="plbl">Remaining</div>
+    </div>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="prog-bar" style="width:0%"></div>
+  </div>
+
+  <div class="progress-section">
+    <h3>Domain 3 — Vedic Primordial Foundation</h3>
+    <div id="tracker-d3">
+      <div class="tracker-item" data-id="t1"><input type="checkbox" onchange="updateProgress(this)"><label>3.1 — Ṛgveda — 10 Maṇḍalas, cosmological architecture, Nāsadīya Sūkta</label><span class="domain-tag tag-d3">D3</span><input class="notes-input" placeholder="Notes / Date..." /></div>
+      <div class="tracker-item" data-id="t2"><input type="checkbox" onchange="updateProgress(this)"><label>3.2 — Yajurveda — Kṛṣṇa/Śukla branches, Śrī Rudram, yajña protocols</label><span class="domain-tag tag-d3">D3</span><input class="notes-input" placeholder="Notes / Date..." /></div>
+      <div class="tracker-item" data-id="t3"><input type="checkbox" onchange="updateProgress(this)"><label>3.3 — Sāmaveda — 7 tones, Gāndhārva Veda link, rāga genesis bridge</label><span class="domain-tag tag-d3">D3</span><input class="notes-input" placeholder="Notes / Date..." /></div>
+      <div class="tracker-item" data-id="t4"><input type="checkbox" onchange="updateProgress(this)"><label>3.4 — Atharvaveda — Healing mantras, Bhūmi Sūkta, Bīja roots, medical link</label><span class="domain-tag tag-d3">D3</span><input class="notes-input" placeholder="Notes / Date..." /></div>
+      <div class="tracker-item" data-id="t5"><input type="checkbox" onchange="updateProgress(this)"><label>3.5 — Upaniṣads &amp; Āraṇyakas — 10 principal, Māṇḍūkya, Pañca Kośa</label><span class="domain-tag tag-d3">D3</span><input class="notes-input" placeholder="Notes / Date..." /></div>
+      <div class="tracker-item" data-id="t6"><input type="checkbox" onchange="updateProgress(this)"><label>3.6 — Śruti-Smṛti Continuum — Three Ācāryas, Purāṇas, textual lineage map</label><span class="domain-tag tag-d3">D3</span><input class="notes-input" placeholder="Notes / Date..." /></div>
+    </div>
+  </div>
+
+  <div class="progress-section">
+    <h3>Domain 4 — Sound &amp; Vibration Science</h3>
+    <div id="tracker-d4">
+      <div class="tracker-item" data-id="t7"><input type="checkbox" onchange="updateProgress(this)"><label>4.1 — Nāda Brahma — Āhata/Anāhata, four levels of sound, Oṃkāra=Sa</label><span class="domain-tag tag-d4">D4</span><input class="notes-input" placeholder="Notes / Date..." /></div>
+      <div class="tracker-item" data-id="t8"><input type="checkbox" onchange="updateProgress(this)"><label>4.2 — 72 Melakarta + 84+ Hindustani rāgas — complete classification + Dha/Ni variants</label><span class="domain-tag tag-d4">D4</span><input class="notes-input" placeholder="Notes / Date..." /></div>
+      <div class="tracker-item" data-id="t9"><input type="checkbox" onchange="updateProgress(this)"><label>4.3 — Rāga-Rasa matrix — 9 Rasas × Rāga × Time × Season cross-reference</label><span class="domain-tag tag-d4">D4</span><input class="notes-input" placeholder="Notes / Date..." /></div>
+      <div class="tracker-item" data-id="t10"><input type="checkbox" onchange="updateProgress(this)"><label>4.4 — Mantra Śāstra — Bīja, Nyāsa, Mātṛkā, Soundarya Laharī frequency table</label><span class="domain-tag tag-d4">D4</span><input class="notes-input" placeholder="Notes / Date..." /></div>
+      <div class="tracker-item" data-id="t11"><input type="checkbox" onchange="updateProgress(this)"><label>4.5 — Bioacoustics &amp; Psychoacoustics — Evidence-rated protocol guide, gap register</label><span class="domain-tag tag-d4">D4</span><input class="notes-input" placeholder="Notes / Date..." /></div>
+      <div class="tracker-item" data-id="t12"><input type="checkbox" onchange="updateProgress(this)"><label>4.6 — 22 Śrutis — Hz frequency calculator, Dha/Ni śruti analysis, medical bridge</label><span class="domain-tag tag-d4">D4</span><input class="notes-input" placeholder="Notes / Date..." /></div>
+    </div>
+  </div>
+
+  <div class="progress-section">
+    <h3>Cross-Domain Deliverables</h3>
+    <div>
+      <div class="tracker-item"><input type="checkbox" onchange="updateProgress(this,true)"><label>Sāmaveda → Rāga Genesis lineage diagram (interactive)</label><span class="domain-tag tag-d3">D3↔D4</span><input class="notes-input" placeholder="Notes..." /></div>
+      <div class="tracker-item"><input type="checkbox" onchange="updateProgress(this,true)"><label>Complete 22 Śruti Hz calculator with Dha/Ni śruti selector</label><span class="domain-tag tag-d4">D4</span><input class="notes-input" placeholder="Notes..." /></div>
+      <div class="tracker-item"><input type="checkbox" onchange="updateProgress(this,true)"><label>Rāga-Rasa-Time-Season-Doṣa cross-reference database</label><span class="domain-tag tag-d4">D4↔D7</span><input class="notes-input" placeholder="Notes..." /></div>
+      <div class="tracker-item"><input type="checkbox" onchange="updateProgress(this,true)"><label>Three Ācārya comparison matrix (Advaita / Dvaita / Viśiṣṭādvaita)</label><span class="domain-tag tag-d3">D3↔D5</span><input class="notes-input" placeholder="Notes..." /></div>
+    </div>
+  </div>
+
+</div><!-- /tab-tracker -->
+
+<footer class="site-footer">
+  Grand Synthesis · <a href="https://culturalmusings.com" target="_blank">culturalmusings.com</a> · <a href="https://github.com/ramachandra1975" target="_blank">github.com/ramachandra1975</a> · Domains 3 &amp; 4 Build Document
+</footer>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function toggleSD(id) {
+  const card = document.getElementById(id);
+  const isExp = card.classList.contains('expanded');
+  card.classList.toggle('expanded', !isExp);
+  const arrow = card.querySelector('.sd-expand');
+  if (arrow) arrow.textContent = isExp ? '▾' : '▴';
+}
+
+let extraCheckboxes = 0;
+function updateProgress(cb, isExtra) {
+  const items = document.querySelectorAll('#tracker-d3 .tracker-item, #tracker-d4 .tracker-item');
+  let done = 0;
+  items.forEach(item => {
+    const checkbox = item.querySelector('input[type="checkbox"]');
+    if (checkbox && checkbox.checked) {
+      done++;
+      item.classList.add('checked');
+    } else {
+      item.classList.remove('checked');
+    }
+  });
+  const total = 12;
+  const pct = Math.round((done / total) * 100);
+  document.getElementById('pct-complete').textContent = pct + '%';
+  document.getElementById('count-done').textContent = done;
+  document.getElementById('count-remain').textContent = total - done;
+  document.getElementById('prog-bar').style.width = pct + '%';
+}
+
+// Auto-expand first subdomain on load for preview
+window.addEventListener('load', () => {
+  toggleSD('sd-3-3');
+  toggleSD('sd-4-6');
+});
+</script>
+
+</body>
+</html>
